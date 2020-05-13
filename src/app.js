@@ -70,7 +70,7 @@ app.get('/weather', (req, res) => {
                 Error: 'Address has some problem'
             })
         }
-        forecast.forecastWithName(location, (error, {weather_descriptions, temperature, feelslike, precip} = {}) => {
+        forecast.forecastWithName(location, (error, {weather_descriptions, temperature, feelslike, precip, humidity} = {}) => {
             console.log('This is forecast Call')
             if (error) {
                 return res.send({
@@ -79,7 +79,7 @@ app.get('/weather', (req, res) => {
             }
             res.send({
                 location,
-                Forecast: weather_descriptions[0] + ' It is currently ' +  temperature + ' degrees out. It feels like ' + feelslike + ' degrees out. It has ' + precip*100 + '% chances of rain',
+                Forecast: weather_descriptions[0] + ' It is currently ' +  temperature + ' degrees out. It feels like ' + feelslike + ' degrees out. It has ' + precip*100 + '% chances of rain. Humidity is ' + humidity,
                 Address: req.query.address
             })
         })
